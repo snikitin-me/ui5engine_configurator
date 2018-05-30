@@ -1,0 +1,81 @@
+<mvc:View
+	controllerName="engine.configurator.controller.Worklist"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:semantic="sap.m.semantic">
+
+	<semantic:FullscreenPage
+		id="page"
+		navButtonPress="onNavBack"
+		showNavButton="true"
+		title="{i18n>worklistViewTitle}">
+		<semantic:content>
+			<Table
+				id="table"
+				width="auto"
+				class="sapUiResponsiveMargin"
+				items="{
+					path: '/Objects',
+					sorter: {
+						path: 'Name',
+						descending: false
+					}
+				}"
+				noDataText="{worklistView>/tableNoDataText}"
+				busyIndicatorDelay="{worklistView>/tableBusyDelay}"
+				growing="true"
+				growingScrollToLoad="true"
+				updateFinished="onUpdateFinished">
+
+				<headerToolbar>
+					<Toolbar>
+						<Title id="tableHeader" text="{worklistView>/worklistTableTitle}"/>
+						<ToolbarSpacer />
+						<SearchField
+							id="searchField"
+							tooltip="{i18n>worklistSearchTooltip}"
+							search="onSearch"
+							width="auto">
+						</SearchField>
+						<Button id="save" text="Новый" type="Emphasized" visible="true" press="onNewObjectPress"/>
+					</Toolbar>
+				</headerToolbar>
+
+				<columns>
+					<Column>
+						<Text text="{i18n>ID}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Name}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>Status}"/>
+					</Column>
+					<Column>
+						<Text text="{i18n>CreateDate}"/>
+					</Column>
+				</columns>
+
+				<items>
+					<ColumnListItem
+						type="Navigation"
+						press="onPress">
+						<cells>
+							<ObjectNumber unit="{ID}"/>
+							<ObjectIdentifier title="{Name}"/>
+							<ObjectNumber unit="{Status}"/>
+							<ObjectNumber unit="{CreateDate}"/>
+						</cells>
+					</ColumnListItem>
+				</items>
+			</Table>
+		</semantic:content>
+
+<!-- 		<semantic:sendEmailAction>
+			<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>
+		</semantic:sendEmailAction> -->
+
+
+	</semantic:FullscreenPage>
+
+</mvc:View>

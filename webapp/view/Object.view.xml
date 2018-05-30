@@ -1,0 +1,20 @@
+<mvc:View controllerName="engine.configurator.controller.Object" xmlns="sap.m" xmlns:mvc="sap.ui.core.mvc" xmlns:semantic="sap.m.semantic">
+	<semantic:FullscreenPage id="page" navButtonPress="onNavBack" showNavButton="true" title="{i18n>objectTitle}" busy="{objectView>/busy}"
+		busyIndicatorDelay="{objectView>/delay}">
+		<semantic:content>
+			<ObjectHeader id="objectHeader" title="{/object}" text="{/object}" numberUnit="{/object}"></ObjectHeader>
+		
+		</semantic:content>
+		<!--<semantic:sendEmailAction>-->
+		<!--	<semantic:SendEmailAction id="shareEmail" press="onShareEmailPress"/>-->
+		<!--</semantic:sendEmailAction>-->
+		<semantic:customFooterContent>
+			<!-- <Button text="Редактировать" press="handleEditPress"/> -->
+			<Button text="{i18n>Install}" type="Emphasized" press="onSavePress"/>
+			<!--<OverflowToolbarButton icon="sap-icon://settings" text="Settings" press="onPress"/>-->
+		</semantic:customFooterContent>
+		<semantic:deleteAction>
+			<semantic:DeleteAction press="onDeletePress" visible="{= ${objectView>/isNew} ? false : true }" />
+		</semantic:deleteAction>
+	</semantic:FullscreenPage>
+</mvc:View>
